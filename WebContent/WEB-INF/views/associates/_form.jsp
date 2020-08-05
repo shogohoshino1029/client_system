@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${error =null}">
     <div id="flush_error">
-        入力内容にエラーがあります。 <br />
+        Error <br />
         <c:forEach var="error" items="${error}">
             ・<c:out value="${error}" /><br />
         </c:forEach>

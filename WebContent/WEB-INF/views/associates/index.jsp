@@ -22,7 +22,7 @@
                     <td>
                         <c:choose>
                             <c:when test="${associate.delete_flag == 1}">
-                                 (削除済み)
+                                 (Deleted)
                             </c:when>
                             <c:otherwise>
                                 <a href="<c:url value='/associates/show?id=${associate.id}' />">詳細を表示</a>

@@ -34,7 +34,7 @@ public class AssociateValidator {
     private static String _validateCode(String code, Boolean code_duplicate_check_flag) {
         // 必須入力チェック
         if(code == null || code.equals("")) {
-            return "Global IDを入力してください。";
+            return "Please enter Global ID.";
         }
 
         // すでに登録されている社員番号との重複チェック
@@ -45,7 +45,7 @@ public class AssociateValidator {
                                             .getSingleResult();
             em.close();
             if(associates_count > 0) {
-                return "入力されたGlobal IDの情報はすでに存在しています。";
+                return "The Global ID information you entered already exists.";
             }
         }
 
@@ -55,7 +55,7 @@ public class AssociateValidator {
     // 社員名の必須入力チェック
     private static String _validateName(String name) {
         if(name == null || name.equals("")) {
-            return "氏名を入力してください。";
+            return "Please enter your Name.";
         }
 
         return "";
@@ -65,7 +65,7 @@ public class AssociateValidator {
     private static String _validatePassword(String password, Boolean password_check_flag) {
         // パスワードを変更する場合のみ実行
         if(password_check_flag && (password == null || password.equals(""))) {
-            return "パスワードを入力してください。 ";
+            return "Please enter your Paasword. ";
         }
         return "";
     }
