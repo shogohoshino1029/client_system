@@ -29,7 +29,7 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("login_associate");
 
-        request.getSession().setAttribute("flush", "Success");
+        request.getSession().setAttribute("flush", "Logout");
         response.sendRedirect(request.getContextPath() + "/login");
 
     }

@@ -43,7 +43,7 @@
                     </tbody>
                 </table>
 
-                <p><a href="<c:url value='/associates/edit?id=${associate.id}' />">Edit this Associate Information</a></p>
+                <p><a href="<c:url value='/associates/edit?id=${associate.id}' />">Edit</a></p>
             </c:when>
             <c:otherwise>
                 <h2>Not Found</h2>

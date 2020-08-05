@@ -15,38 +15,38 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@Table(name = "reports")
+@Table(name = "clients")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllReports",
-            query = "SELECT r FROM Report AS r ORDER BY r.id DESC"
+            name = "getAllClients",
+            query = "SELECT c FROM Client AS c ORDER BY c.id DESC"
             ),
     @NamedQuery(
             name = "getReportCount",
-            query = "SELECT COUNT(r) FROM Report AS r"
+            query = "SELECT COUNT(r) FROM Client AS r"
             ),
     @NamedQuery(
-            name = "getMyAllReports",
-            query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"
+            name = "getMyAllClients",
+            query = "SELECT c FROM Client AS c WHERE c.associate = :associate ORDER BY c.id DESC"
             ),
     @NamedQuery(
-            name = "getMyReportsCount",
-            query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee"
+            name = "getMyClientsCount",
+            query = "SELECT COUNT(c) FROM Client AS c WHERE c.associate = :associate"
             )
 })
 @Entity
-public class Report {
+public class Client {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
-    private Associate employee;
+    @JoinColumn(name = "associate_id", nullable = false)
+    private Associate associate;
 
-    @Column(name = "report_date", nullable = false)
-    private Date report_date;
+    @Column(name = "client_date", nullable = false)
+    private Date client_date;
 
     @Column(name = "title", length = 255, nullable = false)
     private String title;
@@ -69,20 +69,20 @@ public class Report {
         this.id = id;
     }
 
-    public Associate getEmployee() {
-        return employee;
+    public Associate getAssociate() {
+        return associate;
     }
 
-    public void setEmployee(Associate employee) {
-        this.employee = employee;
+    public void setEmployee(Associate associate) {
+        this.associate = associate;
     }
 
-    public Date getReport_date() {
-        return report_date;
+    public Date getClient_date() {
+        return client_date;
     }
 
-    public void setReport_date(Date report_date) {
-        this.report_date = report_date;
+    public void setClient_date(Date client_date) {
+        this.client_date = client_date;
     }
 
     public String getTitle() {

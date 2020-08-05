@@ -13,7 +13,7 @@
             <div id="header">
                 <div id="header_menu">
                     <h1><a href="<c:url value='/' />">Client Management System</a></h1>&nbsp;&nbsp;&nbsp;
-                    <c:if test="${sessionScope.login_employee != null}">
+                    <c:if test="${sessionScope.login_associate != null}">
                         <c:if test="${sessionScope.login_associate.admin_flag == 1 ||
                                       sessionScope.login_associate.admin_flag == 2 ||
                                       sessionScope.login_associate.admin_flag == 3}">
@@ -23,7 +23,7 @@
                     </c:if>
                 </div>
                 <c:if test="${sessionScope.login_associate != null}">
-                    <div id="employee_name">
+                    <div id="associate_name">
                         <c:out value="${sessionScope.login_associate.name}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
                         <a href="<c:url value='/logout' />">Logout</a>
                     </div>

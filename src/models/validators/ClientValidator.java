@@ -3,18 +3,18 @@ package models.validators;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Report;
+import models.Client;
 
-public class ReportValidator {
-    public static List<String> validate(Report r) {
+public class ClientValidator {
+    public static List<String> validate(Client c) {
         List<String> errors = new ArrayList<String>();
 
-        String title_error = _validateTitle(r.getTitle());
+        String title_error = _validateTitle(c.getTitle());
         if(!title_error.equals("")) {
             errors.add(title_error);
         }
 
-        String content_error = _validateContent(r.getContent());
+        String content_error = _validateContent(c.getContent());
         if(!content_error.equals("")) {
             errors.add(content_error);
         }
@@ -24,7 +24,7 @@ public class ReportValidator {
 
     private static String _validateTitle(String title) {
         if(title == null || title.equals("")) {
-            return "タイトルを入力してください。";
+            return "Please enter a title.";
             }
 
         return "";
@@ -32,7 +32,7 @@ public class ReportValidator {
 
     private static String _validateContent(String content) {
         if(content == null || content.equals("")) {
-            return "内容を入力してください。";
+            return "Please enter the content.";
             }
         return "";
     }
