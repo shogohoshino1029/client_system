@@ -13,15 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Report;
-import models.validators.ReportValidator;
+import models.Client;
+import models.validators.ClientValidator;
 import utils.DBUtil;
 
 
 /**
  * Servlet implementation class ReportsUpdateServlet
  */
-@WebServlet("/reports/update")
+@WebServlet("/clients/update")
 public class ClientsUpdateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -41,32 +41,32 @@ public class ClientsUpdateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Report r = em.find(Report.class, (Integer)(request.getSession().getAttribute("report_id")));
+            Client c = em.find(Client.class, (Integer)(request.getSession().getAttribute("client_id")));
 
-            r.setReport_date(Date.valueOf(request.getParameter("report_date")));
-            r.setTitle(request.getParameter("title"));
-            r.setContent(request.getParameter("content"));
-            r.setUpdated_at(new Timestamp(System.currentTimeMillis()));
+            c.setClient_date(Date.valueOf(request.getParameter("client_date")));
+            c.setTitle(request.getParameter("title"));
+            c.setContent(request.getParameter("content"));
+            c.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
-            List<String> errors = ReportValidator.validate(r);
+            List<String> errors = ClientValidator.validate(c);
             if(errors.size() > 0) {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("report", r);
+                request.setAttribute("client", c);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/edit.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/clients/edit.jsp");
                 rd.forward(request, response);
             } else {
                 em.getTransaction().begin();
                 em.getTransaction().commit();
                 em.close();
-                request.getSession().setAttribute("flush", "更新が完了しました。");
+                request.getSession().setAttribute("flush", "Success");
 
-                request.getSession().removeAttribute("report_id");
+                request.getSession().removeAttribute("client_id");
 
-                response.sendRedirect(request.getContextPath() + "/reports/index");
+                response.sendRedirect(request.getContextPath() + "/clients/index");
             }
 
         }
