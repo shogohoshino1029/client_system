@@ -1,4 +1,4 @@
-package controllers.employees;
+package controllers.associates;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Employee;
-import models.validators.EmployeeValidator;
+import models.Associate;
+import models.validators.AssociateValidator;
 import utils.DBUtil;
 import utils.EncryptUtil;
 
@@ -21,13 +21,13 @@ import utils.EncryptUtil;
  * Servlet implementation class EmployeesCreateServlet
  */
 @WebServlet("/employees/create")
-public class EmployeesCreateServlet extends HttpServlet {
+public class AssociatesCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmployeesCreateServlet() {
+    public AssociatesCreateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,7 +40,7 @@ public class EmployeesCreateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em =DBUtil.createEntityManager();
 
-            Employee e =new Employee();
+            Associate e =new Associate();
 
             e.setCode(request.getParameter("code"));
             e.setName(request.getParameter("name"));
@@ -57,7 +57,7 @@ public class EmployeesCreateServlet extends HttpServlet {
             e.setUpdated_at(currentTime);
             e.setDelete_flag(0);
 
-            List<String> errors = EmployeeValidator.validate(e, true, true);
+            List<String> errors = AssociateValidator.validate(e, true, true);
             if(errors.size() > 0) {
                 em.close();
 

@@ -1,4 +1,4 @@
-package controllers.employees;
+package controllers.associates;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Employee;
+import models.Associate;
 import utils.DBUtil;
 
 /**
  * Servlet implementation class EmployeesIndexServlet
  */
 @WebServlet("/employees/index")
-public class EmployeesIndexServlet extends HttpServlet {
+public class AssociatesIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmployeesIndexServlet() {
+    public AssociatesIndexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,7 +39,7 @@ public class EmployeesIndexServlet extends HttpServlet {
         try{
             page = Integer.parseInt(request.getParameter("page"));
         } catch(NumberFormatException e) { }
-        List<Employee> employees = em.createNamedQuery("getAllEmployees", Employee.class)
+        List<Associate> employees = em.createNamedQuery("getAllEmployees", Associate.class)
                                     .setFirstResult(15 * (page - 1))
                                     .setMaxResults(15)
                                     .getResultList();

@@ -11,27 +11,27 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@Table(name = "employees")
+@Table(name = "associates")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllEmployees",
-            query = "SELECT e FROM Employee AS e ORDER BY e.id DESC"
+            name = "getAllAssociates",
+            query = "SELECT a FROM Associate AS a ORDER BY a.id DESC"
             ),
     @NamedQuery(
-            name = "getEmployeesCount",
-            query = "SELECT COUNT(e) FROM Employee AS e"
+            name = "getAssociatesCount",
+            query = "SELECT COUNT(a) FROM Associate AS a"
             ),
     @NamedQuery(
             name = "checkRegisteredCode",
-            query = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"
+            query = "SELECT COUNT(a) FROM Associate AS a WHERE a.code = :code"
             ),
     @NamedQuery(
             name = "checkLoginCodeAndPassword",
-            query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"
+            query = "SELECT a FROM Associate AS a WHERE a.delete_flag = 0 AND a.code = :code AND a.password = :pass"
             )
 })
 @Entity
-public class Employee {
+public class Associate {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

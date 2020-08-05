@@ -1,4 +1,4 @@
-package controllers.employees;
+package controllers.associates;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Employee;
-import models.validators.EmployeeValidator;
+import models.Associate;
+import models.validators.AssociateValidator;
 import utils.DBUtil;
 import utils.EncryptUtil;
 
@@ -21,13 +21,13 @@ import utils.EncryptUtil;
  * Servlet implementation class EmployeesUpdateServlet
  */
 @WebServlet("/employees/update")
-public class EmployeesUpdateServlet extends HttpServlet {
+public class AssociatesUpdateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmployeesUpdateServlet() {
+    public AssociatesUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,7 +40,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em =DBUtil.createEntityManager();
 
-            Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
+            Associate e = em.find(Associate.class, (Integer)(request.getSession().getAttribute("employee_id")));
 
             // 現在の値と異なる社員番号が入力されていたら
             // 重複チェックを行う指定をする
@@ -71,7 +71,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
             e.setUpdated_at(new Timestamp(System.currentTimeMillis()));
             e.setDelete_flag(0);
 
-            List<String> errors = EmployeeValidator.validate(e, code_duplicate_check, password_check_flag);
+            List<String> errors = AssociateValidator.validate(e, code_duplicate_check, password_check_flag);
             if(errors.size() > 0) {
                 em.close();
 

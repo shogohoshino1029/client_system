@@ -1,4 +1,4 @@
-package controllers.employees;
+package controllers.associates;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Employee;
+import models.Associate;
 import utils.DBUtil;
 
 /**
  * Servlet implementation class EmployeesDestroyServlet
  */
 @WebServlet("/employees/destroy")
-public class EmployeesDestroyServlet extends HttpServlet {
+public class AssociatesDestroyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmployeesDestroyServlet() {
+    public AssociatesDestroyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +36,7 @@ public class EmployeesDestroyServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
+            Associate e = em.find(Associate.class, (Integer)(request.getSession().getAttribute("employee_id")));
             e.setDelete_flag(1);
             e.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 

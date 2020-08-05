@@ -5,24 +5,24 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import models.Employee;
+import models.Associate;
 import utils.DBUtil;
 
-public class EmployeeValidator {
-    public static List<String> validate(Employee e, Boolean code_duplicate_check_flag, Boolean password_check_flag) {
+public class AssociateValidator {
+    public static List<String> validate(Associate a, Boolean code_duplicate_check_flag, Boolean password_check_flag) {
         List<String> errors = new ArrayList<String>();
 
-        String code_error = _validateCode(e.getCode(), code_duplicate_check_flag);
+        String code_error = _validateCode(a.getCode(), code_duplicate_check_flag);
         if(!code_error.equals("")) {
             errors.add(code_error);
         }
 
-        String name_error = _validateName(e.getName());
+        String name_error = _validateName(a.getName());
         if(!name_error.equals("")) {
             errors.add(name_error);
         }
 
-        String password_error = _validatePassword(e.getPassword(), password_check_flag);
+        String password_error = _validatePassword(a.getPassword(), password_check_flag);
         if(!password_error.equals("")) {
             errors.add(password_error);
         }
@@ -34,18 +34,18 @@ public class EmployeeValidator {
     private static String _validateCode(String code, Boolean code_duplicate_check_flag) {
         // 必須入力チェック
         if(code == null || code.equals("")) {
-            return "社員番号を入力してください。";
+            return "Global IDを入力してください。";
         }
 
         // すでに登録されている社員番号との重複チェック
         if(code_duplicate_check_flag) {
             EntityManager em = DBUtil.createEntityManager();
-            long employees_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class)
+            long associates_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class)
                                           .setParameter("code", code)
                                             .getSingleResult();
             em.close();
-            if(employees_count > 0) {
-                return "入力された社員番号の情報はすでに存在しています。";
+            if(associates_count > 0) {
+                return "入力されたGlobal IDの情報はすでに存在しています。";
             }
         }
 

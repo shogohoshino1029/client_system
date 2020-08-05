@@ -1,8 +1,7 @@
-package controllers.employees;
+package controllers.associates;
 
 import java.io.IOException;
 
-import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Employee;
-import utils.DBUtil;
+import models.Associate;
 
 /**
- * Servlet implementation class EmployeesShowServlet
+ * Servlet implementation class EmployeesNewServlet
  */
-@WebServlet("/employees/show")
-public class EmployeesShowServlet extends HttpServlet {
+@WebServlet("/employees/new")
+public class AssociatesNewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmployeesShowServlet() {
+    public AssociatesNewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +30,11 @@ public class EmployeesShowServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManager em = DBUtil.createEntityManager();
+        request.setAttribute("_token", request.getSession().getId());
+        request.setAttribute("employee", new Associate());
 
-        Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
-
-        em.close();
-
-        request.setAttribute("employee", e);
-
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/show.jsp");
-        rd.forward(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/new.jsp");
+        rd.forward(request,  response);
     }
 
 }
