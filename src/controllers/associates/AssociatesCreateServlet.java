@@ -20,7 +20,7 @@ import utils.EncryptUtil;
 /**
  * Servlet implementation class EmployeesCreateServlet
  */
-@WebServlet("/employees/create")
+@WebServlet("/associates/create")
 public class AssociatesCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -40,41 +40,41 @@ public class AssociatesCreateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em =DBUtil.createEntityManager();
 
-            Associate e =new Associate();
+            Associate a =new Associate();
 
-            e.setCode(request.getParameter("code"));
-            e.setName(request.getParameter("name"));
-            e.setPassword(
+            a.setCode(request.getParameter("code"));
+            a.setName(request.getParameter("name"));
+            a.setPassword(
                     EncryptUtil.getPasswordEncrypt(
                             request.getParameter("password"),
                             (String)this.getServletContext().getAttribute("salt")
                             )
                     );
-            e.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
+            a.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            e.setCreated_at(currentTime);
-            e.setUpdated_at(currentTime);
-            e.setDelete_flag(0);
+            a.setCreated_at(currentTime);
+            a.setUpdated_at(currentTime);
+            a.setDelete_flag(0);
 
-            List<String> errors = AssociateValidator.validate(e, true, true);
+            List<String> errors = AssociateValidator.validate(a, true, true);
             if(errors.size() > 0) {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("employee", e);
+                request.setAttribute("associate", a);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/new.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/associates/new.jsp");
                 rd.forward(request,  response);
             } else {
                 em.getTransaction().begin();
-                em.persist(e);
+                em.persist(a);
                 em.getTransaction().commit();
                 em.close();
-                request.getSession().setAttribute("flush", "登録が完了しました。");
+                request.getSession().setAttribute("flush", "Success");
 
-                response.sendRedirect(request.getContextPath() + "/employees/index");
+                response.sendRedirect(request.getContextPath() + "/associates/index");
             }
         }
     }
