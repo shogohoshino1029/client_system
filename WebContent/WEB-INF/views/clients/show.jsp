@@ -4,7 +4,7 @@
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
-            <c:when test="${report != null}">
+            <c:when test="${client != null}">
                 <h2>Client Details Page</h2>
 
                 <table>

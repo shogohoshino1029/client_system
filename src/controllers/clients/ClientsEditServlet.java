@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Employee;
-import models.Report;
+import models.Associate;
+import models.Client;
 import utils.DBUtil;
 
 /**
  * Servlet implementation class ReportsEditServlet
  */
-@WebServlet("/reports/edit")
+@WebServlet("/clients/edit")
 public class ClientsEditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -35,18 +35,18 @@ public class ClientsEditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
+        Client c = em.find(Client.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 
-        Employee login_employee = (Employee)request.getSession().getAttribute("login_employee");
-        if(r != null && login_employee.getId() == r.getEmployee().getId()) {
-            request.setAttribute("report", r);
+        Associate login_associate = (Associate)request.getSession().getAttribute("login_associate");
+        if(c != null && login_associate.getId() == c.getAssociate().getId()) {
+            request.setAttribute("client", c);
             request.setAttribute("_token", request.getSession().getId());
-            request.getSession().setAttribute("report_id", r.getId());
+            request.getSession().setAttribute("client_id", c.getId());
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/edit.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/clients/edit.jsp");
         rd.forward(request, response);
     }
 

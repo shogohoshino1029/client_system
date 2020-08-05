@@ -19,7 +19,7 @@
                 </tr>
                 <c:forEach var="client" items="${clients}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td class="client_name"><c:out value="${client.associate.name}" />"</td>
+                        <td class="client_name"><c:out value="${client.associate.name}" /></td>
                         <td class="client_date"><fmt:formatDate value='${client.client_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="client_title">${client.title}</td>
                         <td class="client_action"><a href="<c:url value='/clients/show?id=${client.id}' />">Details</a></td>

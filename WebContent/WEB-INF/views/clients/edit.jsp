@@ -3,17 +3,17 @@
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
-            <c:when test="${report != null}">
-                <h2>日報　編集ページ</h2>
-                <form method="POST" action="<c:url value='/reports/update' />">
+            <c:when test="${client != null}">
+                <h2>Client　Edit Page</h2>
+                <form method="POST" action="<c:url value='/clients/update' />">
                     <c:import url="_form.jsp" />
                 </form>
             </c:when>
             <c:otherwise>
-                <h2>お探しのデータは見つかりませんでした。</h2>
+                <h2>Not Found</h2>
             </c:otherwise>
         </c:choose>
 
-        <p><a href="<c:url value='/reports/index' />">一覧に戻る</a></p>
+        <p><a href="<c:url value='/clients/index' />">Back</a></p>
     </c:param>
 </c:import>
