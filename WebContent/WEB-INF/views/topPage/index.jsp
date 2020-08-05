@@ -30,7 +30,7 @@
         </table>
 
         <div id="pagination">
-            （全 ${cilents_count} 件）<br />
+            （All ${cilents_count} ）<br />
             <c:forEach var="i" begin="1" end="${((clients_count - 1) / 15) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
