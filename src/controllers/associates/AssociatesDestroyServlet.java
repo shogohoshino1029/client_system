@@ -16,7 +16,7 @@ import utils.DBUtil;
 /**
  * Servlet implementation class EmployeesDestroyServlet
  */
-@WebServlet("/employees/destroy")
+@WebServlet("/associates/destroy")
 public class AssociatesDestroyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -36,16 +36,16 @@ public class AssociatesDestroyServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Associate e = em.find(Associate.class, (Integer)(request.getSession().getAttribute("employee_id")));
-            e.setDelete_flag(1);
-            e.setUpdated_at(new Timestamp(System.currentTimeMillis()));
+            Associate a = em.find(Associate.class, (Integer)(request.getSession().getAttribute("associate_id")));
+            a.setDelete_flag(1);
+            a.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
             em.getTransaction().begin();
             em.getTransaction().commit();
             em.close();
-            request.getSession().setAttribute("flush", "削除が完了しました。");
+            request.getSession().setAttribute("flush", "Success。");
 
-            response.sendRedirect(request.getContextPath() + "/employees/index");
+            response.sendRedirect(request.getContextPath() + "/associates/index");
 
         }
     }
