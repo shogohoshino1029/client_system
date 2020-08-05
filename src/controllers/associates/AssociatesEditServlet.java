@@ -16,7 +16,7 @@ import utils.DBUtil;
 /**
  * Servlet implementation class EmployeesEditServlet
  */
-@WebServlet("/employees/edit")
+@WebServlet("/associates/edit")
 public class AssociatesEditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -34,15 +34,15 @@ public class AssociatesEditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        Associate e = em.find(Associate.class, Integer.parseInt(request.getParameter("id")));
+        Associate a = em.find(Associate.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 
-        request.setAttribute("employee", e);
+        request.setAttribute("associate", a);
         request.setAttribute("_token", request.getSession().getId());
-        request.getSession().setAttribute("employee_id", e.getId());
+        request.getSession().setAttribute("employee_id", a.getId());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/associates/edit.jsp");
         rd.forward(request, response);
     }
 

@@ -3,20 +3,20 @@
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
-            <c:when test="${employee != null}">
-                <h2>id : ${employee.id} の従業員情報　編集ページ</h2>
-                <p>(パスワードは変更する場合のみ入力してください) </p>
-                <form method="POST" action="<c:url value='/employees/update' />">
+            <c:when test="${associate != null}">
+                <h2>id : ${associate.id} Edit</h2>
+                <p>(Please enter the password only when changing it.) </p>
+                <form method="POST" action="<c:url value='/associates/update' />">
                     <c:import url="_form.jsp" />
                 </form>
 
-                <p><a href="#" onclick="confirmDestroy();">この従業員情報を削除する</a></p>
-                <form method="POST" action="<c:url value='/employees/destroy' />">
+                <p><a href="#" onclick="confirmDestroy();">Remove this Associate information</a></p>
+                <form method="POST" action="<c:url value='/associates/destroy' />">
                     <input type="hidden" name="_token" value="${_token}" />
                 </form>
                 <script>
                     function confirmDestroy() {
-                        if(confirm("本当に削除してよろしいですか")) {
+                        if(confirm("Are you sure you want to delete it?")) {
                             document.forms[1].submit();
                         }
                     }
@@ -24,10 +24,10 @@
                 </script>
             </c:when>
             <c:otherwise>
-                <h2>お探しのデータは見つかりませんでした。</h2>
+                <h2>Not Found</h2>
             </c:otherwise>
         </c:choose>
 
-        <p><a href="<c:url value='/employees/index' />">一覧に戻る</a></p>
+        <p><a href="<c:url value='/associates/index' />">Back</a></p>
     </c:param>
 </c:import>
