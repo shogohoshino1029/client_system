@@ -17,7 +17,7 @@ import utils.DBUtil;
 /**
  * Servlet implementation class EmployeesIndexServlet
  */
-@WebServlet("/employees/index")
+@WebServlet("/associates/index")
 public class AssociatesIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -39,18 +39,18 @@ public class AssociatesIndexServlet extends HttpServlet {
         try{
             page = Integer.parseInt(request.getParameter("page"));
         } catch(NumberFormatException e) { }
-        List<Associate> employees = em.createNamedQuery("getAllEmployees", Associate.class)
+        List<Associate> associates = em.createNamedQuery("getAllAssociates", Associate.class)
                                     .setFirstResult(15 * (page - 1))
                                     .setMaxResults(15)
                                     .getResultList();
 
-        long employees_count = (long)em.createNamedQuery("getEmployeesCount", Long.class)
+        long associates_count = (long)em.createNamedQuery("getAssociatesCount", Long.class)
                                        .getSingleResult();
 
         em.close();
 
-        request.setAttribute("employees", employees);
-        request.setAttribute("employees_count", employees_count);
+        request.setAttribute("associates", associates);
+        request.setAttribute("associates_count", associates_count);
         request.setAttribute("page", page);
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
@@ -58,7 +58,7 @@ public class AssociatesIndexServlet extends HttpServlet {
 
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/associates/index.jsp");
         rd.forward(request,  response);
     }
 

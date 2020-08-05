@@ -14,7 +14,7 @@ import models.Associate;
 /**
  * Servlet implementation class EmployeesNewServlet
  */
-@WebServlet("/employees/new")
+@WebServlet("/associates/new")
 public class AssociatesNewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -31,9 +31,9 @@ public class AssociatesNewServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("_token", request.getSession().getId());
-        request.setAttribute("employee", new Associate());
+        request.setAttribute("associate", new Associate());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/new.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/associates/new.jsp");
         rd.forward(request,  response);
     }
 
