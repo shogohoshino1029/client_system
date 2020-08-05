@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Report;
+import models.Client;
 import utils.DBUtil;
 
 /**
  * Servlet implementation class ReportsShowServlet
  */
-@WebServlet("/reports/show")
+@WebServlet("/clients/show")
 public class ClientsShowServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -34,14 +34,14 @@ public class ClientsShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
+        Client c = em.find(Client.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 
-        request.setAttribute("report", r);
+        request.setAttribute("client", c);
         request.setAttribute("_token", request.getSession().getId());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/show.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/clients/show.jsp");
         rd.forward(request, response);
     }
 
