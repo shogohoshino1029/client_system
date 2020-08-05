@@ -82,12 +82,12 @@ button {
     background-color: #d4edda;
 }
 
-table#employee_list th {
+table#associate_list th {
     width: 30%;
     padding: 10px 2%;
 }
 
-table#employee_list td {
+table#associate_list td {
     width: 29%;
     padding: 10px 2%;
 }
@@ -102,3 +102,30 @@ tr.row0 {
 select {
     height: 30px;
 }
+
+#header_menu {
+    width: 57%;
+    padding-top: 17px;
+    padding-left: 3%;
+    display: inline-block;
+}
+
+#associate_name {
+    color: #cccccc;
+    width: 36%;
+    padding-right: 3%;
+    text-align: right;
+    display: inline-block;
+}
+
+#header a {
+    color: #eeeeee;
+}
+
+h1 a {
+    color: #eeeeee;
+}
+
+h1 {
+    font-size: 24px;
+    display: inline;
