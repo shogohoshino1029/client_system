@@ -12,9 +12,9 @@
         <table id="client_list">
             <tbody>
                 <tr>
-                    <th class="client_name">Name</th>
-                    <th class="client_date">Date</th>
-                    <th class="client_title">Title</th>
+                    <th class="client_name">Assignment</th>
+                    <th class="client_date">RegisterDate</th>
+                    <th class="client_title">Client Name</th>
                     <th class="client_action">Operation</th>
                 </tr>
                 <c:forEach var="client" items="${clients}" varStatus="status">

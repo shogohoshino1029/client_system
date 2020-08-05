@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Report;
+import models.Client;
 
 /**
  * Servlet implementation class ReportsNewServlet
  */
-@WebServlet("/reports/new")
+@WebServlet("/clients/new")
 public class ClientsNewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -33,11 +33,11 @@ public class ClientsNewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("_token", request.getSession().getId());
 
-        Report r = new Report();
-        r.setReport_date(new Date(System.currentTimeMillis()));
-        request.setAttribute("report", r);
+        Client c = new Client();
+        c.setClient_date(new Date(System.currentTimeMillis()));
+        request.setAttribute("client", c);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/new.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/clients/new.jsp");
         rd.forward(request, response);
     }
 

@@ -45,7 +45,7 @@ public class ClientsIndexServlet extends HttpServlet {
                                  .setFirstResult(15 * (page -1))
                                  .setMaxResults(15)
                                  .getResultList();
-        Long clients_count = (long)em.createNamedQuery("getClientCount", Long.class)
+        Long clients_count = (long)em.createNamedQuery("getClientsCount", Long.class)
                                      .getSingleResult();
 
         em.close();

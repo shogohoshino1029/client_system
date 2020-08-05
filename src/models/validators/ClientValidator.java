@@ -24,7 +24,7 @@ public class ClientValidator {
 
     private static String _validateTitle(String title) {
         if(title == null || title.equals("")) {
-            return "Please enter a title.";
+            return "Please enter a Client Name.";
             }
 
         return "";
