@@ -13,15 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Employee;
-import models.Report;
-import models.validators.ReportValidator;
+import models.Associate;
+import models.Client;
+import models.validators.ClientValidator;
 import utils.DBUtil;
 
 /**
  * Servlet implementation class ReportCreateServlet
  */
-@WebServlet("/reports/create")
+@WebServlet("/clients/create")
 public class ClientsCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -41,42 +41,42 @@ public class ClientsCreateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Report r = new Report();
+            Client c = new Client();
 
-            r.setEmployee((Employee)request.getSession().getAttribute("login_employee"));
+            c.setEmployee((Associate)request.getSession().getAttribute("login_associate"));
 
-            Date report_date = new Date(System.currentTimeMillis());
-            String rd_str = request.getParameter("report_date");
+            Date client_date = new Date(System.currentTimeMillis());
+            String rd_str = request.getParameter("client_date");
             if(rd_str != null && !rd_str.equals("")) {
-                report_date = Date.valueOf(request.getParameter("report_date"));
+                client_date = Date.valueOf(request.getParameter("client_date"));
             }
-            r.setReport_date(report_date);
+            c.setClient_date(client_date);
 
-            r.setTitle(request.getParameter("title"));
-            r.setContent(request.getParameter("content"));
+            c.setTitle(request.getParameter("title"));
+            c.setContent(request.getParameter("content"));
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            r.setCreated_at(currentTime);
-            r.setUpdated_at(currentTime);
+            c.setCreated_at(currentTime);
+            c.setUpdated_at(currentTime);
 
-            List<String> errors = ReportValidator.validate(r);
+            List<String> errors = ClientValidator.validate(c);
             if(errors.size() > 0) {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("report", r);
+                request.setAttribute("client", c);
                 request.setAttribute("errors", errors);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/new.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/clients/new.jsp");
             rd.forward(request, response);
         } else {
             em.getTransaction().begin();
-            em.persist(r);
+            em.persist(c);
             em.getTransaction().commit();
             em.close();
-            request.getSession().setAttribute("flush", "登録が完了しました。 ");
+            request.getSession().setAttribute("flush", "Success ");
 
-            response.sendRedirect(request.getContextPath() + "/reports/index");
+            response.sendRedirect(request.getContextPath() + "/clients/index");
           }
        }
     }
