@@ -47,7 +47,7 @@
             </c:choose>
         </c:forEach>
     </div>
-    <p><a href="<c:url value='/associates/new' />">New Associate Register</a></p>
+    <p><a href="<c:url value='/associates/new' />">Register New Associate</a></p>
 
     </c:param>
 </c:import>
