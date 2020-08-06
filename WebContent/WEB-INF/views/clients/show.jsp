@@ -18,6 +18,13 @@
                             <td><fmt:formatDate value="${client.client_date}" pattern="yyyy-MM-dd" /></td>
                         </tr>
                         <tr>
+                            <th>Purchased</th>
+                            <td>
+                                <pre><c:out value="${client.purchased}" /></pre>
+                            </td>
+                        </tr>
+                        <tr>
+                        <tr>
                             <th>Content</th>
                             <td>
                                 <pre><c:out value="${client.content}" /></pre>

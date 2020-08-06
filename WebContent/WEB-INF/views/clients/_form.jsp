@@ -22,6 +22,10 @@
 <input type="text" name="title" value="${client.title}" />
 <br /><br />
 
+<label for="purchased">Purchased</label><br />
+<textarea name="purchased" rows="5" cols="30">${client.purchased}</textarea>
+<br /><br />
+
 <label for="content">Content</label><br />
 <textarea name="content" rows="10" cols="50">${client.content}</textarea>
 <br /><br />

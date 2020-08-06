@@ -53,6 +53,7 @@ public class ClientsCreateServlet extends HttpServlet {
             c.setClient_date(client_date);
 
             c.setTitle(request.getParameter("title"));
+            c.setPurchased(request.getParameter("purchased"));
             c.setContent(request.getParameter("content"));
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
