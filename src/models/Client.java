@@ -52,6 +52,10 @@ public class Client {
     private String title;
 
     @Lob
+    @Column(name = "purchased", nullable = false)
+    private String purchased;
+
+    @Lob
     @Column(name = "content", nullable = false)
     private String content;
 
@@ -91,6 +95,14 @@ public class Client {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getPurchased() {
+        return purchased;
+    }
+
+    public void setPurchased(String purchased) {
+        this.purchased = purchased;
     }
 
     public String getContent() {
