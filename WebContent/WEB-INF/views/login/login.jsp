@@ -24,6 +24,9 @@
 
             <input type="hidden" name="_token" value="${_token}" />
             <button type="submit">Login</button>
-        </form>
+        </form><br />
+
+        <p><a href="<c:url value='/associates/new' />">Guest</a></p>
+
     </c:param>
 </c:import>

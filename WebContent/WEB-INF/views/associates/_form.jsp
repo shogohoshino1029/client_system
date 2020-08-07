@@ -27,6 +27,7 @@
     <option value="1"<c:if test="&{associate.admin_flag == 1}"> selected</c:if>>Store Manager</option>
     <option value="2"<c:if test="&{associate.admin_flag == 2}"> selected</c:if>>Assistant Store Manager</option>
     <option value="3"<c:if test="&{associate.admin_flag == 3}"> selected</c:if>>Store Super Visor</option>
+    <option value="4"<c:if test="&{associate.admin_flag == 4}"> selected</c:if>>Guest</option>
 </select>
 <br /><br />
 
