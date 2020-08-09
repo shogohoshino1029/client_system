@@ -24,6 +24,8 @@
                                     <c:when test="${associate.admin_flag == 1}">Store Manager</c:when>
                                     <c:when test="${associate.admin_flag == 2}">Assistant Store Manager</c:when>
                                     <c:when test="${associate.admin_flag == 3}">Store Super Visor</c:when>
+                                    <c:when test="${associate.admin_flag == 4}">Guest</c:when>
+
                                     <c:otherwise>Sales Associate</c:otherwise>
                                 </c:choose>
                             </td>

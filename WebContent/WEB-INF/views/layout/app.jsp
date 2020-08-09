@@ -16,7 +16,8 @@
                     <c:if test="${sessionScope.login_associate != null}">
                         <c:if test="${sessionScope.login_associate.admin_flag == 1 ||
                                       sessionScope.login_associate.admin_flag == 2 ||
-                                      sessionScope.login_associate.admin_flag == 3}">
+                                      sessionScope.login_associate.admin_flag == 3 ||
+                                      sessionScope.login_associate.admin_flag == 4}">
                             <a href="<c:url value='/associates/index' />">Associate Management</a>&nbsp;
                         </c:if>
                         <a href="<c:url value='/clients/index' />">Client Management</a>&nbsp;

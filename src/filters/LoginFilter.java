@@ -43,7 +43,9 @@ public class LoginFilter implements Filter {
         String context_path = ((HttpServletRequest)request).getContextPath();
         String servlet_path = ((HttpServletRequest)request).getServletPath();
 
-        if(!servlet_path.matches("/css.*") && !servlet_path.matches("/associates/new")) {       // CSSフォルダ内は認証処理から除外する
+        if(!servlet_path.matches("/css.*")
+        && !servlet_path.matches("/associates/new")
+        && !servlet_path.matches("/associates/create")) {
             HttpSession session = ((HttpServletRequest)request).getSession();
 
 
